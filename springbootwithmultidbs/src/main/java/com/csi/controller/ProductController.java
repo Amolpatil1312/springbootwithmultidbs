@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
@@ -27,5 +28,10 @@ public class ProductController {
     @GetMapping("/findall")
     public ResponseEntity<List<Product>> findAll() {
         return ResponseEntity.ok(productServiceImpl.findAll());
+    }
+
+    @GetMapping("/findByProdId/{prodId}")
+    public ResponseEntity<Optional<Product>> findByProdId(@PathVariable int prodId){
+        return ResponseEntity.ok(productServiceImpl.findById(prodId));
     }
 }
